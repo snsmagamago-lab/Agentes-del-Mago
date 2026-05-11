@@ -1,0 +1,30 @@
+{
+  "name": "relayrepo",
+  "version": "0.1.0",
+  "description": "Git-backed workspace for coordinating Codex and Claude through tasks, handoffs, and a local dashboard.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js",
+    "task:new": "node scripts/new_task.js",
+    "task:close": "node scripts/close_task.js",
+    "agent:codex": "node scripts/start_codex_task.js",
+    "agent:claude": "node scripts/start_claude_review.js",
+    "agent:route": "node scripts/handoff_router.js",
+    "agent:validate": "node scripts/validate_agent_state.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "agents",
+    "codex",
+    "claude",
+    "handoff",
+    "git"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "task_id": "T001",
+  "title": "Bootstrap RelayRepo workspace",
+  "status": "needs_review",
+  "owner": "claude",
+  "branch": "agent/codex/T001-bootstrap-relayrepo-workspace",
+  "round": 1,
+  "max_rounds": 2,
+  "last_handoff": ".agents/handoff/codex_to_claude_T001.md",
+  "next_action": "claude_review",
+  "task_file": "tasks/T001_bootstrap_relayrepo_workspace.md",
+  "updated_at": "2026-05-11T00:00:00.000Z"
+}

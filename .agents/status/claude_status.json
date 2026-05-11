@@ -1,0 +1,8 @@
+{
+  "agent": "claude",
+  "current_task": "T001",
+  "status": "queued_review",
+  "last_review": null,
+  "decision": null,
+  "updated_at": "2026-05-11T00:00:00.000Z"
+}

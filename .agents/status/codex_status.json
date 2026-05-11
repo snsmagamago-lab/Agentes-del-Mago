@@ -1,0 +1,9 @@
+{
+  "agent": "codex",
+  "current_task": "T001",
+  "status": "idle",
+  "last_branch": "agent/codex/T001-bootstrap-relayrepo-workspace",
+  "last_commit": "",
+  "last_handoff": ".agents/handoff/codex_to_claude_T001.md",
+  "updated_at": "2026-05-11T00:00:00.000Z"
+}

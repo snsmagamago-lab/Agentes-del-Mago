@@ -1,0 +1,26 @@
+name: Claude Review Placeholder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prepare-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prepare Claude review inbox
+        run: npm run agent:claude
+
+      - name: Validate agent state
+        run: npm run agent:validate

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RelayRepo Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Agent Relay Workspace</p>
+          <h1>RelayRepo</h1>
+        </div>
+        <div class="top-actions">
+          <span id="validationPill" class="pill neutral">Checking</span>
+          <button id="refreshBtn" class="button ghost" type="button" title="Refresh state">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+            </span>
+            Refresh
+          </button>
+          <button id="validateBtn" class="button primary" type="button" title="Validate agent state">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            Validate
+          </button>
+        </div>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="panel task-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Current Task</p>
+              <h2 id="currentTitle">No task loaded</h2>
+            </div>
+            <span id="taskStatus" class="pill neutral">idle</span>
+          </div>
+          <dl class="meta-grid">
+            <div>
+              <dt>Owner</dt>
+              <dd id="currentOwner">-</dd>
+            </div>
+            <div>
+              <dt>Round</dt>
+              <dd id="currentRound">-</dd>
+            </div>
+            <div>
+              <dt>Branch</dt>
+              <dd id="currentBranch">-</dd>
+            </div>
+            <div>
+              <dt>Next</dt>
+              <dd id="currentNext">-</dd>
+            </div>
+          </dl>
+
+          <div class="action-row">
+            <button id="startCodexBtn" class="button secondary" type="button">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m8 17 4 4 4-4"/><path d="M12 12v9"/><path d="M20 16.5A4.5 4.5 0 0 0 17 8h-1.3A7 7 0 1 0 4 14.5"/></svg>
+              </span>
+              Start Codex
+            </button>
+            <button id="startClaudeBtn" class="button secondary" type="button">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 11h6"/><path d="M9 15h4"/><path d="M5 5h14v14H7l-2 2z"/></svg>
+              </span>
+              Start Claude
+            </button>
+            <button id="routeBtn" class="button ghost" type="button">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3 7h12"/><path d="m11 3 4 4-4 4"/><path d="M21 17H9"/><path d="m13 13-4 4 4 4"/></svg>
+              </span>
+              Route
+            </button>
+          </div>
+
+          <form id="newTaskForm" class="stacked-form">
+            <h3>New Task</h3>
+            <label>
+              Title
+              <input id="taskTitleInput" name="title" type="text" placeholder="Build auth audit log" required>
+            </label>
+            <label>
+              Objective
+              <textarea id="taskObjectiveInput" name="objective" rows="3" placeholder="What should be true when this is done?"></textarea>
+            </label>
+            <button class="button primary full" type="submit">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </span>
+              Create Task
+            </button>
+          </form>
+        </section>
+
+        <section class="panel command-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Shared Memory</p>
+              <h2>Instructions both agents see</h2>
+            </div>
+            <button id="saveBriefBtn" class="button primary" type="button">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>
+              </span>
+              Save Brief
+            </button>
+          </div>
+          <textarea id="sharedBriefInput" class="brief-input" spellcheck="false" placeholder="Write one clear instruction here. Codex and Claude should read .agents/inbox/shared_brief.md before acting."></textarea>
+          <div class="agent-lanes">
+            <article class="agent-lane codex-lane">
+              <div class="lane-header">
+                <h3>Codex</h3>
+                <span id="codexStatus" class="pill neutral">idle</span>
+              </div>
+              <p id="codexSummary" class="muted">No Codex state yet.</p>
+              <div class="copy-row">
+                <code>npm run agent:codex</code>
+                <button class="icon-button copy-btn" data-copy="npm run agent:codex" type="button" title="Copy command">
+                  <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+              <pre id="codexInbox" class="inbox-preview"></pre>
+            </article>
+            <article class="agent-lane claude-lane">
+              <div class="lane-header">
+                <h3>Claude</h3>
+                <span id="claudeStatus" class="pill neutral">idle</span>
+              </div>
+              <p id="claudeSummary" class="muted">No Claude state yet.</p>
+              <div class="copy-row">
+                <code>npm run agent:claude</code>
+                <button class="icon-button copy-btn" data-copy="npm run agent:claude" type="button" title="Copy command">
+                  <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+              <pre id="claudeInbox" class="inbox-preview"></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel handoff-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Relay</p>
+              <h2>Create Handoff</h2>
+            </div>
+          </div>
+          <form id="handoffForm" class="stacked-form">
+            <div class="two-col">
+              <label>
+                From
+                <select id="handoffFrom">
+                  <option value="codex">Codex</option>
+                  <option value="claude">Claude</option>
+                </select>
+              </label>
+              <label>
+                Status
+                <select id="handoffStatus">
+                  <option value="needs_review">needs_review</option>
+                  <option value="needs_changes">needs_changes</option>
+                  <option value="approved">approved</option>
+                  <option value="blocked">blocked</option>
+                  <option value="requires_human_decision">requires_human_decision</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Summary
+              <textarea id="handoffSummary" rows="4" placeholder="What changed or what was reviewed?"></textarea>
+            </label>
+            <label>
+              Files
+              <textarea id="handoffFiles" rows="3" placeholder="One path per line"></textarea>
+            </label>
+            <label>
+              Tests
+              <input id="handoffTests" type="text" placeholder="npm test">
+            </label>
+            <label>
+              Recommended next action
+              <textarea id="handoffNext" rows="3" placeholder="What should the next agent do?"></textarea>
+            </label>
+            <button class="button primary full" type="submit">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4z"/></svg>
+              </span>
+              Save Handoff
+            </button>
+          </form>
+        </section>
+
+        <section class="panel list-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Backlog</p>
+              <h2>Tasks</h2>
+            </div>
+          </div>
+          <div id="taskList" class="item-list"></div>
+        </section>
+
+        <section class="panel list-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">History</p>
+              <h2>Handoffs</h2>
+            </div>
+          </div>
+          <div id="handoffList" class="item-list"></div>
+        </section>
+
+        <section class="panel log-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Repository</p>
+              <h2>Git and Activity</h2>
+            </div>
+            <button id="closeTaskBtn" class="button danger" type="button">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              Close Task
+            </button>
+          </div>
+          <div id="gitBox" class="git-box"></div>
+          <pre id="activityLog" class="activity-log"></pre>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
