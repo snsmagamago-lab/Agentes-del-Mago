@@ -1,0 +1,6 @@
+{
+  "commands": {
+    "codex": "codex exec --cd {root} --sandbox danger-full-access --ask-for-approval never - < {prompt}",
+    "claude": "claude -p --permission-mode acceptEdits --add-dir {root} < {prompt}"
+  }
+}

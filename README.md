@@ -63,6 +63,9 @@ npm run agent:codex
 npm run agent:claude
 npm run agent:route
 npm run agent:validate
+npm run daemon
+npm run daemon:codex
+npm run daemon:claude
 npm run watch:codex
 npm run watch:claude
 npm run task:close -- T001
@@ -80,6 +83,12 @@ npm run watch:claude
 The watcher prints a wakeup notice when the current task owner or next action belongs to that agent, and writes helper prompts under `.agents/wakeup/`.
 
 See [docs/watch_mode.md](docs/watch_mode.md).
+
+For guarded auto-run, configure `.agents/daemon.config.json` from `.agents/daemon.config.example.json`, then run:
+
+```bash
+npm run daemon -- --once --run
+```
 
 ## Testing
 

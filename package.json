@@ -13,9 +13,13 @@
     "agent:claude": "node scripts/start_claude_review.js",
     "agent:route": "node scripts/handoff_router.js",
     "agent:validate": "node scripts/validate_agent_state.js",
+    "agent:daemon": "node scripts/agent_daemon.js all",
     "watch": "node scripts/watch_agent.js all",
     "watch:codex": "node scripts/watch_agent.js codex",
     "watch:claude": "node scripts/watch_agent.js claude",
+    "daemon": "node scripts/agent_daemon.js all",
+    "daemon:codex": "node scripts/agent_daemon.js codex",
+    "daemon:claude": "node scripts/agent_daemon.js claude",
     "test": "node --test"
   },
   "keywords": [

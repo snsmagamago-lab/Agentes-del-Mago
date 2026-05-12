@@ -29,6 +29,13 @@ npm run watch:claude
 
 When it says `READY FOR CLAUDE`, Claude should read the displayed inbox and act.
 
+To let RelayRepo launch Claude automatically after you configure the command:
+
+```bash
+copy .agents\daemon.config.example.json .agents\daemon.config.json
+npm run daemon:claude -- --once --run
+```
+
 ## Codex Bridge
 
 Codex should read:
@@ -47,6 +54,13 @@ npm run watch:codex
 ```
 
 When it says `READY FOR CODEX`, Codex should read the displayed inbox and act.
+
+To let RelayRepo launch Codex automatically after you configure the command:
+
+```bash
+copy .agents\daemon.config.example.json .agents\daemon.config.json
+npm run daemon:codex -- --once --run
+```
 
 ## GitHub Remote
 

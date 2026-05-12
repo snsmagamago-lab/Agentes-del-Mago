@@ -67,16 +67,108 @@ npm run watch:claude -- --beep
 
 ## What This Does Not Do Yet
 
-The watcher does not automatically run Codex or Claude. That is intentional for safety.
+The watcher itself does not automatically run Codex or Claude. That is intentional for safety.
 
-Full auto-run requires a known CLI command for each agent, for example:
+For guarded auto-run, use the daemon.
 
-```txt
-claude --some-noninteractive-mode < prompt.md
-codex --some-noninteractive-mode < prompt.md
+## Daemon Dry Run
+
+The daemon builds the exact prompt it would send to the responsible agent and records launch state, but does not run the agent unless `--run` is passed.
+
+```bash
+npm run daemon -- --once
 ```
 
-Once the exact commands are confirmed, RelayRepo can add a guarded daemon mode that:
+For one agent:
+
+```bash
+npm run daemon:claude -- --once
+npm run daemon:codex -- --once
+```
+
+Prompts are written under:
+
+```txt
+.agents/wakeup/
+```
+
+The daemon state is written locally to:
+
+```txt
+.agents/status/daemon_state.json
+```
+
+That file is ignored by Git because it is machine-local runtime state.
+
+## Configure Auto-Run Commands
+
+Copy the example config:
+
+```bash
+copy .agents\daemon.config.example.json .agents\daemon.config.json
+```
+
+Example config:
+
+```json
+{
+  "commands": {
+    "codex": "codex exec --cd {root} --sandbox danger-full-access --ask-for-approval never - < {prompt}",
+    "claude": "claude -p --permission-mode acceptEdits --add-dir {root} < {prompt}"
+  }
+}
+```
+
+Placeholders:
+
+- `{root}`: repository root.
+- `{prompt}`: generated wakeup prompt path.
+- `{task_id}`: active task id.
+- `{handoff}`: latest handoff path.
+- `{agent}`: `codex` or `claude`.
+
+Environment variables override the config file:
+
+```bash
+set RELAY_CODEX_COMMAND=codex exec --cd {root} --sandbox danger-full-access --ask-for-approval never - ^< {prompt}
+set RELAY_CLAUDE_COMMAND=claude -p --permission-mode acceptEdits --add-dir {root} ^< {prompt}
+```
+
+PowerShell example:
+
+```powershell
+$env:RELAY_CODEX_COMMAND='codex exec --cd {root} --sandbox danger-full-access --ask-for-approval never - < {prompt}'
+$env:RELAY_CLAUDE_COMMAND='claude -p --permission-mode acceptEdits --add-dir {root} < {prompt}'
+```
+
+## Run the Daemon
+
+Start with dry-run:
+
+```bash
+npm run daemon -- --once
+```
+
+If the printed command looks correct, run once for real:
+
+```bash
+npm run daemon -- --once --run
+```
+
+Continuous mode:
+
+```bash
+npm run daemon -- --run --interval 10
+```
+
+Recommended safer layout:
+
+```bash
+npm run daemon:codex -- --run --interval 10
+npm run daemon:claude -- --run --interval 10
+```
+
+The daemon:
 
 1. Detects the responsible agent.
 2. Builds a prompt from the inbox and handoff.
@@ -84,4 +176,21 @@ Once the exact commands are confirmed, RelayRepo can add a guarded daemon mode t
 4. Enforces max rounds.
 5. Stops at `human_merge`, `approved`, `blocked`, or `requires_human_decision`.
 
-Until then, safe watch mode removes the "go check the handoff" reminder without giving scripts authority to run agents unattended.
+It also avoids launching the same agent for the same handoff twice unless `--force` is passed.
+
+## Recommended Next Step
+
+Use this sequence:
+
+```bash
+npm run daemon -- --once
+copy .agents\daemon.config.example.json .agents\daemon.config.json
+npm run daemon -- --once --run
+```
+
+If both agents run correctly, keep two daemon terminals open:
+
+```bash
+npm run daemon:codex -- --run --interval 10
+npm run daemon:claude -- --run --interval 10
+```

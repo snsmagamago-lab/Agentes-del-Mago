@@ -10,3 +10,7 @@ npm-debug.log*
 tests/.tmp-*/
 .relayrepo-server.json
 .claude/
+.agents/wakeup/
+.agents/daemon-logs/
+.agents/status/daemon_state.json
+.agents/daemon.config.json
