@@ -7,3 +7,4 @@
 - 2026-05-12T01:52:26.433Z - Created T002: Comprobacion de flujo
 - 2026-05-12T02:29:04.464Z - Prepared Codex inbox for T002
 - 2026-05-12T02:41:00.178Z - Codex created handoff for T002: needs_review
+- 2026-05-12T02:00:00.000Z - Claude reviewed T002. Decision: approved. Two required reference fixes (Hori1989, Wang2024). Handoff: claude_final_review_T002.md.
