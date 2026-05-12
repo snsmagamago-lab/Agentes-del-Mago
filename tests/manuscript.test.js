@@ -12,9 +12,11 @@ function read(relativePath) {
 test('T002 manuscript package has required files', () => {
   const required = [
     'manuscript/manuscript.md',
+    'manuscript/manuscript.tex',
     'manuscript/supplementary_pathways_and_experiments.md',
     'manuscript/references_to_retrieve.md',
     'manuscript/data/simulated_performance.json',
+    'manuscript/figures/fig1_catalyst_concept.pdf',
     'manuscript/figures/fig1_catalyst_concept.svg',
     'manuscript/figures/fig2_hcell_screening.svg',
     'manuscript/figures/fig3_flowcell_stability.svg',
@@ -25,6 +27,16 @@ test('T002 manuscript package has required files', () => {
   for (const file of required) {
     assert.equal(fs.existsSync(path.join(root, file)), true, `${file} should exist`);
   }
+});
+
+test('T003 LaTeX manuscript uses Illustrator-derived Figure 1 PDF', () => {
+  const latex = read('manuscript/manuscript.tex');
+  const pdf = fs.readFileSync(path.join(root, 'manuscript/figures/fig1_catalyst_concept.pdf'));
+
+  assert.match(latex, /\\documentclass/);
+  assert.match(latex, /fig1_catalyst_concept\.pdf/);
+  assert.match(latex, /Mafa Scheme CuAgRu\.ai/);
+  assert.equal(pdf.subarray(0, 5).toString('ascii'), '%PDF-');
 });
 
 test('T002 manuscript contains citations, figures, and simulation disclosure', () => {

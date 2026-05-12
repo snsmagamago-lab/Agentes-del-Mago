@@ -32,9 +32,9 @@ Ru is introduced from RuCl3.xH2O, specified as 30% Ru, as a low-loading modifier
 
 Figure 1 shows the proposed architecture.
 
-![Figure 1. Cu/Ag/Ru nanowire catalyst concept.](figures/fig1_catalyst_concept.svg)
+![Figure 1. Cu/Ag/Ru nanowire catalyst concept.](figures/fig1_catalyst_concept.pdf)
 
-Figure 1. Conceptual Cu/Ag/Ru nanowire catalyst. Ag-rich particles increase CO supply, reconstructed Cu nanowires provide C-C coupling sites, and low-loading Ru-containing domains are proposed to tune hydrogenation. This is a simulated schematic, not experimental evidence.
+Figure 1. Conceptual Cu/Ag/Ru nanowire catalyst from the supplied Illustrator source file. Ag-rich particles increase CO supply, reconstructed Cu nanowires provide C-C coupling sites, and low-loading Ru-containing domains are proposed to tune hydrogenation.
 
 ## 3. Experimental Strategy
 
