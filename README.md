@@ -63,8 +63,23 @@ npm run agent:codex
 npm run agent:claude
 npm run agent:route
 npm run agent:validate
+npm run watch:codex
+npm run watch:claude
 npm run task:close -- T001
 ```
+
+## Watch Mode
+
+To avoid manually telling each agent that a handoff is ready, keep watcher terminals open:
+
+```bash
+npm run watch:codex
+npm run watch:claude
+```
+
+The watcher prints a wakeup notice when the current task owner or next action belongs to that agent, and writes helper prompts under `.agents/wakeup/`.
+
+See [docs/watch_mode.md](docs/watch_mode.md).
 
 ## Testing
 
