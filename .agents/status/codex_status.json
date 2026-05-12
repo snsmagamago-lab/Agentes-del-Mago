@@ -1,9 +1,9 @@
 {
   "agent": "codex",
-  "current_task": "T001",
+  "current_task": "T002",
   "status": "idle",
-  "last_branch": "agent/codex/T001-bootstrap-relayrepo-workspace",
-  "last_commit": "",
-  "last_handoff": ".agents/handoff/codex_to_claude_T001.md",
-  "updated_at": "2026-05-11T00:00:00.000Z"
+  "last_branch": "agent/codex/T002-comprobacion-de-flujo",
+  "last_commit": "e706c53",
+  "last_handoff": ".agents/handoff/codex_to_claude_T002.md",
+  "updated_at": "2026-05-12T02:41:00.177Z"
 }

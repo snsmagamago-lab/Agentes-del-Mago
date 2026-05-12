@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="600" viewBox="0 0 980 600" role="img" aria-labelledby="title desc">
+<title id="title">Simulated H-cell faradaic efficiency screening</title>
+<desc id="desc">Line plot of simulated faradaic efficiency for C1, C2, and C3 product classes across potentials.</desc>
+<rect width="980" height="600" fill="white"/>
+<line x1="82" y1="470" x2="792" y2="470" stroke="#e5e7eb"/>
+<text x="72" y="474" text-anchor="end" font-size="12" fill="#667085">0</text>
+<line x1="82" y1="372.5" x2="792" y2="372.5" stroke="#e5e7eb"/>
+<text x="72" y="376.5" text-anchor="end" font-size="12" fill="#667085">25</text>
+<line x1="82" y1="275" x2="792" y2="275" stroke="#e5e7eb"/>
+<text x="72" y="279" text-anchor="end" font-size="12" fill="#667085">50</text>
+<line x1="82" y1="177.5" x2="792" y2="177.5" stroke="#e5e7eb"/>
+<text x="72" y="181.5" text-anchor="end" font-size="12" fill="#667085">75</text>
+<line x1="82" y1="80" x2="792" y2="80" stroke="#e5e7eb"/>
+<text x="72" y="84" text-anchor="end" font-size="12" fill="#667085">100</text>
+<line x1="82" y1="80" x2="82" y2="470" stroke="#1f2328" stroke-width="2"/>
+<line x1="82" y1="470" x2="792" y2="470" stroke="#1f2328" stroke-width="2"/>
+<text x="437" y="584" text-anchor="middle" font-size="14" fill="#1f2328">Potential / V vs RHE</text>
+<text x="18" y="275" text-anchor="middle" font-size="14" fill="#1f2328" transform="rotate(-90 18 275)">Faradaic efficiency / %</text>
+<text x="62" y="42" font-size="24" font-weight="700" fill="#1f2328">H-cell catalyst screening concept</text>
+<text x="792" y="494" text-anchor="middle" font-size="12" fill="#667085">-0.55</text>
+<text x="650" y="494" text-anchor="middle" font-size="12" fill="#667085">-0.65</text>
+<text x="508.00000000000006" y="494" text-anchor="middle" font-size="12" fill="#667085">-0.75</text>
+<text x="366.0000000000001" y="494" text-anchor="middle" font-size="12" fill="#667085">-0.85</text>
+<text x="224.0000000000001" y="494" text-anchor="middle" font-size="12" fill="#667085">-0.95</text>
+<text x="82" y="494" text-anchor="middle" font-size="12" fill="#667085">-1.05</text>
+<polyline fill="none" stroke="#0f766e" stroke-width="3" points="792,384.2 650,399.8 508,411.5 366,415.4 224,423.2 82,427.1"/>
+<polyline fill="none" stroke="#2563eb" stroke-width="3" points="792,431 650,399.8 508,368.6 366,349.1 224,356.9 82,376.4"/>
+<polyline fill="none" stroke="#c2410c" stroke-width="3" points="792,466.1 650,454.4 508,434.9 366,411.5 224,399.8 82,407.6"/>
+<circle cx="792" cy="384.2" r="5" fill="#0f766e"/>
+<circle cx="650" cy="399.8" r="5" fill="#0f766e"/>
+<circle cx="508" cy="411.5" r="5" fill="#0f766e"/>
+<circle cx="366" cy="415.4" r="5" fill="#0f766e"/>
+<circle cx="224" cy="423.2" r="5" fill="#0f766e"/>
+<circle cx="82" cy="427.1" r="5" fill="#0f766e"/>
+<circle cx="792" cy="431" r="5" fill="#2563eb"/>
+<circle cx="650" cy="399.8" r="5" fill="#2563eb"/>
+<circle cx="508" cy="368.6" r="5" fill="#2563eb"/>
+<circle cx="366" cy="349.1" r="5" fill="#2563eb"/>
+<circle cx="224" cy="356.9" r="5" fill="#2563eb"/>
+<circle cx="82" cy="376.4" r="5" fill="#2563eb"/>
+<circle cx="792" cy="466.1" r="5" fill="#c2410c"/>
+<circle cx="650" cy="454.4" r="5" fill="#c2410c"/>
+<circle cx="508" cy="434.9" r="5" fill="#c2410c"/>
+<circle cx="366" cy="411.5" r="5" fill="#c2410c"/>
+<circle cx="224" cy="399.8" r="5" fill="#c2410c"/>
+<circle cx="82" cy="407.6" r="5" fill="#c2410c"/>
+<rect x="825" y="104" width="120" height="94" rx="8" fill="white" stroke="#e5e7eb"/>
+<circle cx="842" cy="130" r="5" fill="#0f766e"/><text x="858" y="135" font-size="13" fill="#1f2328">C1 products</text>
+<circle cx="842" cy="158" r="5" fill="#2563eb"/><text x="858" y="163" font-size="13" fill="#1f2328">C2 products</text>
+<circle cx="842" cy="186" r="5" fill="#c2410c"/><text x="858" y="191" font-size="13" fill="#1f2328">C3 products</text>
+<text x="490" y="555" text-anchor="middle" font-size="13" fill="#667085">Synthetic planning data. Intended shape: C2+ selectivity rises with CO coverage while HER must remain controlled.</text>
+</svg>

@@ -1,21 +1,21 @@
 # Next Claude Review
 
-Task: T001
-Branch to review: agent/codex/T001-bootstrap-relayrepo-workspace
+Task: T002
+Branch to review: agent/codex/T002-comprobacion-de-flujo
 
 Read:
 - AGENTS.md
-- tasks/T001_bootstrap_relayrepo_workspace.md
-- .agents/handoff/codex_to_claude_T001.md
+- tasks/T002_comprobacion_de_flujo.md
+- .agents/handoff/codex_to_claude_T002.md
 - .agents/inbox/shared_brief.md
 
 Expected output:
-- Review the dashboard, scripts, docs, tests, and workflows.
-- Mark critical issues separately from optional improvements.
-- Write the result to `.agents/handoff/claude_to_codex_T001.md` or `.agents/handoff/claude_final_review_T001.md`.
+- Review notes
+- Required fixes or approval
+- Handoff file in .agents/handoff/
 
 Suggested local command:
 
 ```bash
-npm run agent:claude T001
+npm run agent:claude T002
 ```

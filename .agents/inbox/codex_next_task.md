@@ -1,11 +1,11 @@
 # Next Codex Task
 
-Task: T001
-Branch: agent/codex/T001-bootstrap-relayrepo-workspace
+Task: T002
+Branch: agent/codex/T002-comprobacion-de-flujo
 
 Read:
 - AGENTS.md
-- tasks/T001_bootstrap_relayrepo_workspace.md
+- tasks/T002_comprobacion_de_flujo.md
 - .agents/inbox/shared_brief.md
 
 Expected output:
@@ -14,8 +14,9 @@ Expected output:
 - Updated documentation when needed
 - Handoff file in .agents/handoff/
 
-Current state:
+Finish by running:
 
-```txt
-Codex completed the bootstrap implementation. Claude should review next.
+```bash
+npm test
+npm run agent:validate
 ```

@@ -1,0 +1,101 @@
+{
+  "note": "Synthetic planning data for manuscript mock figures. Replace with measured GC/NMR data before submission.",
+  "potentials_V_vs_RHE": [
+    -0.55,
+    -0.65,
+    -0.75,
+    -0.85,
+    -0.95,
+    -1.05
+  ],
+  "h_cell_faradaic_efficiency_percent": {
+    "Cu_NW_C1": [
+      22,
+      18,
+      15,
+      14,
+      12,
+      11
+    ],
+    "Cu_NW_C2": [
+      10,
+      18,
+      26,
+      31,
+      29,
+      24
+    ],
+    "Cu_Ag_Ru_C3": [
+      1,
+      4,
+      9,
+      15,
+      18,
+      16
+    ]
+  },
+  "flow_cell": {
+    "time_h": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "total_current_density_mA_cm2": [
+      210,
+      235,
+      250,
+      248,
+      242,
+      236,
+      230
+    ],
+    "C2plus_FE_percent": [
+      41,
+      48,
+      54,
+      55,
+      53,
+      52,
+      50
+    ],
+    "C3_FE_percent": [
+      8,
+      12,
+      16,
+      18,
+      17,
+      16,
+      15
+    ]
+  },
+  "catalyst_screen": {
+    "labels": [
+      "Cu NW",
+      "Cu-Ag NW",
+      "Cu-Ru NW",
+      "Cu-Ag-Ru NW"
+    ],
+    "CO_FE_percent": [
+      14,
+      27,
+      12,
+      19
+    ],
+    "C2_FE_percent": [
+      31,
+      35,
+      29,
+      39
+    ],
+    "C3_FE_percent": [
+      5,
+      9,
+      11,
+      18
+    ]
+  }
+}
