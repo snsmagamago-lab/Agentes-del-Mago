@@ -1,13 +1,13 @@
 {
   "task_id": "T001",
   "title": "Bootstrap RelayRepo workspace",
-  "status": "approved",
+  "status": "closed",
   "owner": "human",
   "branch": "agent/codex/T001-bootstrap-relayrepo-workspace",
   "round": 1,
   "max_rounds": 2,
   "last_handoff": ".agents/handoff/claude_final_review_T001.md",
-  "next_action": "human_merge",
-  "task_file": "tasks/T001_bootstrap_relayrepo_workspace.md",
-  "updated_at": "2026-05-11T03:00:00.000Z"
+  "next_action": "closed",
+  "task_file": "tasks/archive/T001_bootstrap_relayrepo_workspace.md",
+  "updated_at": "2026-05-12T01:50:01.179Z"
 }
