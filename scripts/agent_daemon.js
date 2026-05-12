@@ -209,9 +209,21 @@ function buildLaunchPlan(root, readyItem, config) {
 }
 
 function executePlan(root, plan, args, state, output = console.log) {
-  if (!args.force && state.launched?.[plan.key]) {
-    output(`Skipping ${plan.agent} for ${plan.task_id}; this handoff was already launched.`);
-    return { skipped: true };
+  const previousLaunch = state.launched?.[plan.key];
+  if (!args.force && previousLaunch) {
+    if (previousLaunch.status === 'completed') {
+      output(`Skipping ${plan.agent} for ${plan.task_id}; this handoff already completed.`);
+      return { skipped: true, previousStatus: previousLaunch.status };
+    }
+    if (previousLaunch.status === 'running') {
+      output(`Skipping ${plan.agent} for ${plan.task_id}; this handoff is already running.`);
+      return { skipped: true, previousStatus: previousLaunch.status };
+    }
+    if (previousLaunch.status === 'dry_run' && !args.run) {
+      output(`Skipping ${plan.agent} for ${plan.task_id}; dry-run was already recorded.`);
+      return { skipped: true, previousStatus: previousLaunch.status };
+    }
+    output(`Retrying ${plan.agent} for ${plan.task_id}; previous status was ${previousLaunch.status}.`);
   }
 
   if (!plan.commandTemplate) {
@@ -243,6 +255,13 @@ function executePlan(root, plan, args, state, output = console.log) {
     writeDaemonState(root, state);
     return { dryRun: true };
   }
+
+  state.launched = state.launched || {};
+  state.launched[plan.key] = {
+    ...record,
+    status: 'running'
+  };
+  writeDaemonState(root, state);
 
   const result = spawnSync(plan.command, {
     cwd: root,

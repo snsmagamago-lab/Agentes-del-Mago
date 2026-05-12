@@ -72,3 +72,42 @@ test('daemon dry-run writes daemon state without executing command', () => {
     removeRoot(root);
   }
 });
+
+test('daemon allows retry after a failed launch record', () => {
+  const root = makeRoot();
+  try {
+    relay.createTask(root, { title: 'Daemon retry' });
+    relay.writeJson(root, '.agents/daemon.config.json', {
+      commands: {
+        codex: 'node --version'
+      }
+    });
+    const snapshot = watcher.buildTurnSnapshot(root, 'codex');
+    const plan = daemon.buildLaunchPlan(root, snapshot.ready[0], {
+      commands: {
+        codex: 'node --version'
+      }
+    });
+    relay.writeJson(root, '.agents/status/daemon_state.json', {
+      launched: {
+        [plan.key]: {
+          status: 'failed'
+        }
+      }
+    });
+
+    const messages = [];
+    const result = daemon.daemonTick(root, {
+      agent: 'codex',
+      run: false,
+      force: false,
+      maxLaunches: 1
+    }, (line) => messages.push(line));
+
+    assert.equal(result.ready, 1);
+    assert.equal(result.launched, 1);
+    assert.match(messages.join('\n'), /Retrying codex/);
+  } finally {
+    removeRoot(root);
+  }
+});
